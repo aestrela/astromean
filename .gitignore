@@ -47,3 +47,8 @@ GoogleService-Info.plist
 # Environment
 .env
 .env.*
+
+#Securtt
+/.dart_tool/
+/build/
+/windows/
