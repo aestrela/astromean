@@ -1,0 +1,24 @@
+workflows:
+  astromean_build:
+    name: Build Astromean
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Flutter clean & get packages
+        script: |
+          flutter clean
+          flutter pub get
+      - name: Build Android APK
+        script: flutter build apk --release
+      - name: Build iOS IPA
+        script: flutter build ios --release --no-codesign
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+      - build/ios/iphoneos/*.ipa
+    publishing:
+      email:
+        recipients:
+          - carolinetec@proton.me
